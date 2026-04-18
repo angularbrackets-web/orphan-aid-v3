@@ -83,14 +83,14 @@ const carouselImages = [
         <div class="divide-y divide-[#263238]/10">
           {differentiators.map((d, i) => (
             <div
-              class="animate-in-element flex gap-5 py-6 group"
+              class="animate-in-element flex gap-8 py-7 group"
               style={`transition-delay: ${i * 80}ms`}
             >
               <!-- Oversized faded number -->
-              <div class="flex-shrink-0 w-16">
+              <div class="flex-shrink-0 w-20">
                 <span
-                  class="font-[Satoshi] font-black leading-none select-none transition-opacity duration-300 group-hover:opacity-40"
-                  style={`font-size: 4rem; color: ${d.accent}; opacity: 0.18; line-height: 1`}
+                  class="font-[Satoshi] font-black leading-none select-none transition-opacity duration-300 group-hover:opacity-60"
+                  style={`font-size: 4rem; color: ${d.accent}; opacity: 0.42; line-height: 1`}
                 >
                   {d.number}
                 </span>
