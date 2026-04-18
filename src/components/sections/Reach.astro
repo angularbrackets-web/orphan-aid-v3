@@ -1,132 +1,119 @@
 ---
-import { FallingPattern } from "@/components/react/FallingPattern";
-import { highCrisisCountries, vulnerableCountries } from "@/data/countries";
+import { WorldMap } from "@/components/react/WorldMap";
+import { orphanAidMarkers, highCrisisCountries, vulnerableCountries } from "@/data/countries";
 
-const flagMap: Record<string, string> = {
-  palestine: "🇵🇸", syria: "🇸🇾", yemen: "🇾🇪",
-  pakistan: "🇵🇰", india: "🇮🇳", indonesia: "🇮🇩",
-  nigeria: "🇳🇬", thailand: "🇹🇭", mauritania: "🇲🇷",
-};
+const canadaHQ = { lat: 56.13, lng: -106.35, label: "Canada" };
+
+const mapDots = orphanAidMarkers.map(country => ({
+  start: canadaHQ,
+  end: { lat: country.location[0], lng: country.location[1], label: country.label },
+  color: country.crisis === "high" ? "#ef4444" : "#56ACE0",
+}));
 ---
 
-<section id="reach" class="relative py-28 md:py-36 bg-white overflow-hidden">
-  <FallingPattern
-    client:visible
-    color="rgba(13,71,161,0.055)"
-    backgroundColor="white"
-    duration={160}
-    blurIntensity="0.8em"
-    density={1}
-  />
+<section id="reach" class="relative py-24 md:py-32 bg-[#080d1a] overflow-hidden">
+
+  <!-- Subtle radial glow behind map -->
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[60%] rounded-full bg-[#56ACE0]/4 blur-[120px]"></div>
+  </div>
 
   <div class="relative z-10 max-w-7xl mx-auto px-6">
+
     <!-- Label -->
     <div class="animate-in-element flex justify-center mb-8">
-      <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#0d47a1]/8 border border-[#0d47a1]/15 text-[#0d47a1] text-xs font-[Montserrat] font-semibold tracking-widest uppercase">
+      <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/8 border border-white/15 text-white/70 text-xs font-[Montserrat] font-semibold tracking-widest uppercase">
         Global Reach
       </span>
     </div>
 
     <!-- Headline -->
-    <div class="animate-in-element text-center max-w-3xl mx-auto mb-6">
-      <h2 class="font-[Montserrat] font-semibold text-[#263238] leading-[1.05] tracking-[-0.02em]" style="font-size: clamp(2.8rem, 6vw, 4.5rem)">
+    <div class="animate-in-element text-center max-w-3xl mx-auto mb-5">
+      <h2 class="font-[Montserrat] font-semibold text-white leading-[1.05] tracking-[-0.02em]" style="font-size: clamp(2.8rem, 6vw, 4.5rem)">
         Delivering Support<br />
-        <span class="text-[#0d47a1]">Across Borders</span>
+        <span style="color: #56ACE0">Across Borders</span>
       </h2>
     </div>
-    <div class="animate-in-element text-center max-w-2xl mx-auto mb-20">
-      <p class="text-lg font-[Inter] text-[#263238]/60 leading-[1.6]">
-        Orphan Aid is focused on regions facing the most critical humanitarian needs,
-        establishing partnerships and infrastructure where they matter most.
+    <div class="animate-in-element text-center max-w-2xl mx-auto mb-4">
+      <p class="text-lg font-[Inter] text-white/50 leading-[1.6]">
+        From our base in Canada, Orphan Aid reaches the world's most critical
+        humanitarian zones — delivering care where it matters most.
       </p>
     </div>
 
-    <!-- Two-column country groups -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-
-      <!-- High-Crisis Zones -->
-      <div class="animate-in-element" style="transition-delay: 100ms">
-        <div class="mb-8">
-          <div class="flex items-center gap-3 mb-2">
-            <span class="w-3 h-3 rounded-full bg-red-500 shrink-0 animate-pulse"></span>
-            <h3 class="font-[Montserrat] font-bold text-[#263238] tracking-tight" style="font-size: clamp(1.5rem, 3vw, 2rem)">High-Crisis Zones</h3>
-          </div>
-          <div class="ml-6 h-0.5 w-24 bg-gradient-to-r from-red-500 to-transparent rounded-full"></div>
-          <p class="ml-6 mt-2 text-xs font-[Inter] text-[#263238]/45 tracking-wide">Priority funding allocated to these regions</p>
-        </div>
-
-        <div class="space-y-4">
-          {highCrisisCountries.map((country) => (
-            <div class="group relative flex items-center justify-start px-6 py-5 rounded-xl bg-gray-100 shadow-[0_2px_12px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.11)] hover:-translate-y-0.5 transition-all duration-300 border border-[#263238]/10 hover:border-red-200 overflow-hidden">
-              <div class="card-shimmer"></div>
-              <div class="absolute left-0 top-0 bottom-0 w-0.5 bg-red-500 scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-center rounded-full"></div>
-              <div class="flex items-center gap-5">
-                <span class="text-5xl leading-none" aria-hidden="true">{flagMap[country.id]}</span>
-                <div>
-                  <div class="font-[Montserrat] font-bold text-[#263238] leading-tight" style="font-size: clamp(1.4rem, 2.5vw, 1.75rem)">{country.label}</div>
-                  <div class="text-[10px] tracking-widest uppercase text-[#263238]/40 font-[Inter] mt-1">Active Operations</div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <!-- Vulnerable Communities -->
-      <div class="animate-in-element" style="transition-delay: 200ms">
-        <div class="mb-8">
-          <div class="flex items-center gap-3 mb-2">
-            <span class="w-3 h-3 rounded-full bg-[#0d47a1] shrink-0"></span>
-            <h3 class="font-[Montserrat] font-bold text-[#263238] tracking-tight" style="font-size: clamp(1.5rem, 3vw, 2rem)">Vulnerable Communities</h3>
-          </div>
-          <div class="ml-6 h-0.5 w-24 bg-gradient-to-r from-[#0d47a1] to-transparent rounded-full"></div>
-          <p class="ml-6 mt-2 text-xs font-[Inter] text-[#263238]/45 tracking-wide">Long-term care infrastructure in development</p>
-        </div>
-
-        <div class="space-y-4">
-          {vulnerableCountries.map((country) => (
-            <div class="group relative flex items-center justify-start px-6 py-5 rounded-xl bg-gray-100 shadow-[0_2px_12px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.11)] hover:-translate-y-0.5 transition-all duration-300 border border-[#263238]/10 hover:border-[#0d47a1]/25 overflow-hidden">
-              <div class="card-shimmer"></div>
-              <div class="absolute left-0 top-0 bottom-0 w-0.5 bg-[#0d47a1] scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-center rounded-full"></div>
-              <div class="flex items-center gap-5">
-                <span class="text-5xl leading-none" aria-hidden="true">{flagMap[country.id]}</span>
-                <div>
-                  <div class="font-[Montserrat] font-bold text-[#263238] leading-tight" style="font-size: clamp(1.4rem, 2.5vw, 1.75rem)">{country.label}</div>
-                  <div class="text-[10px] tracking-widest uppercase text-[#263238]/40 font-[Inter] mt-1">Established Partnership</div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+    <!-- World Map -->
+    <div class="animate-in-element -mx-6 md:mx-0">
+      <WorldMap
+        client:visible
+        dots={mapDots}
+        lineColor="#56ACE0"
+      />
     </div>
+
+    <!-- Country tags row -->
+    <div class="animate-in-element mt-10 flex flex-col sm:flex-row gap-8 justify-center items-start sm:items-center">
+
+      <!-- High-Crisis -->
+      <div class="flex flex-col gap-3">
+        <div class="flex items-center gap-2 mb-1">
+          <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse shrink-0"></span>
+          <span class="text-[10px] font-[Montserrat] font-bold tracking-widest uppercase text-red-400">High-Crisis Zones</span>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          {highCrisisCountries.map(c => (
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 text-white/80 text-xs font-[Inter] font-medium">
+              <span class="w-1.5 h-1.5 rounded-full bg-red-400 shrink-0"></span>
+              {c.label}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="hidden sm:block w-px h-12 bg-white/10 shrink-0"></div>
+
+      <!-- Vulnerable -->
+      <div class="flex flex-col gap-3">
+        <div class="flex items-center gap-2 mb-1">
+          <span class="w-2 h-2 rounded-full shrink-0" style="background: #56ACE0"></span>
+          <span class="text-[10px] font-[Montserrat] font-bold tracking-widest uppercase" style="color: #56ACE0">Vulnerable Communities</span>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          {vulnerableCountries.map(c => (
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-white/80 text-xs font-[Inter] font-medium" style="background: rgba(86,172,224,0.08); border-color: rgba(86,172,224,0.2)">
+              <span class="w-1.5 h-1.5 rounded-full shrink-0" style="background: #56ACE0"></span>
+              {c.label}
+            </span>
+          ))}
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Stats strip -->
+    <div class="animate-in-element mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto">
+      {[
+        { value: "9", label: "Countries" },
+        { value: "51,800+", label: "Children Supported" },
+        { value: "3", label: "Active Crisis Zones" },
+        { value: "6", label: "Partner Networks" },
+      ].map(stat => (
+        <div class="text-center">
+          <div class="font-[Montserrat] font-bold text-white leading-none mb-1.5" style="font-size: clamp(2rem, 4vw, 2.75rem)">{stat.value}</div>
+          <div class="text-[11px] font-[Inter] text-white/40 tracking-wide uppercase">{stat.label}</div>
+        </div>
+      ))}
+    </div>
+
   </div>
 </section>
-
-<style>
-  @keyframes shimmer-sweep {
-    0%   { transform: translateX(-100%); opacity: 0; }
-    5%   { opacity: 1; }
-    45%  { opacity: 1; }
-    50%  { transform: translateX(300%); opacity: 0; }
-    100% { transform: translateX(300%); opacity: 0; }
-  }
-  .card-shimmer {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(105deg, transparent 20%, rgba(255,255,255,0.65) 50%, transparent 80%);
-    animation: shimmer-sweep 5s ease-in-out infinite;
-    pointer-events: none;
-    border-radius: inherit;
-  }
-</style>
 
 <script>
   const observer = new IntersectionObserver(
     (entries) => entries.forEach(e => {
       if (e.isIntersecting) e.target.classList.add('is-visible');
     }),
-    { threshold: 0.1, rootMargin: '-60px' }
+    { threshold: 0.08, rootMargin: '-40px' }
   );
   document.querySelectorAll('#reach .animate-in-element').forEach(el => observer.observe(el));
 </script>
