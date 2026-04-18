@@ -50,7 +50,7 @@ import { orphanAidMarkers } from "@/data/countries";
         </div>
 
         <!-- Headline — Montserrat 700, oversized -->
-        <h1 class="font-[Montserrat] font-bold text-white leading-[1.0] tracking-[-0.02em] mb-6 animate-fade-up" style="font-size: clamp(3.5rem, 8vw, 6.5rem); animation-delay: 80ms">
+        <h1 class="font-[Montserrat] font-medium text-white leading-[1.0] tracking-[-0.02em] mb-6 animate-fade-up" style="font-size: clamp(3.5rem, 8vw, 6.5rem); animation-delay: 80ms">
           Every Child<br />
           <span class="text-[#e0cf56]">Is Our Child</span>
         </h1>
@@ -61,7 +61,7 @@ import { orphanAidMarkers } from "@/data/countries";
         </p>
 
         <!-- Typewriter -->
-        <div class="font-[Montserrat] font-bold mb-10 min-h-[2.5rem] animate-fade-up" style="font-size: clamp(1.5rem, 3vw, 2.2rem); animation-delay: 220ms">
+        <div class="font-[Montserrat] font-medium mb-10 min-h-[2.5rem] animate-fade-up" style="font-size: clamp(1.5rem, 3vw, 2.2rem); animation-delay: 220ms">
           <TypewriterText client:only="react" />
         </div>
 
@@ -112,18 +112,14 @@ import { orphanAidMarkers } from "@/data/countries";
             <p class="text-white/60 text-xs font-[Inter] leading-relaxed">Active operations across high-crisis &amp; vulnerable regions</p>
           </div>
 
-          <!-- Countries list -->
-          <div class="px-6 py-4 space-y-3">
-            {orphanAidMarkers.slice(0, 5).map((country) => (
-              <div class="flex items-center justify-between group">
-                <span class="text-white/85 text-sm font-[Montserrat] font-medium group-hover:text-white transition-colors">{country.label}</span>
-                <span class="text-[#e0cf56] font-[Montserrat] font-bold text-sm tabular-nums">{country.orphans.toLocaleString()}</span>
-              </div>
-            ))}
-            <div class="flex items-center justify-between pt-1 border-t border-white/10">
-              <span class="text-white/45 text-xs font-[Inter]">+ 4 more regions</span>
-              <span class="text-white/45 text-xs font-[Inter]">see below</span>
-            </div>
+          <!-- Country cycler -->
+          <div class="px-6 py-6 flex flex-col items-center justify-center" style="min-height: 120px">
+            <div class="text-[9px] font-[Montserrat] font-bold tracking-widest uppercase text-white/35 mb-4">Now Supporting</div>
+            <div
+              id="hero-country-name"
+              class="font-[Montserrat] font-bold text-white text-center"
+              style="font-size: clamp(1.5rem, 2.8vw, 2rem); transition: opacity 0.35s ease, transform 0.35s ease;"
+            >Palestine (Gaza)</div>
           </div>
 
           <!-- Card footer summary -->
@@ -174,3 +170,21 @@ import { orphanAidMarkers } from "@/data/countries";
     animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
 </style>
+
+<script>
+  const countries = ["Palestine (Gaza)", "Syria", "Yemen", "Pakistan", "India", "Indonesia", "Nigeria", "Thailand", "Mauritania"];
+  let idx = 0;
+  const el = document.getElementById('hero-country-name');
+  if (el) {
+    setInterval(() => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(10px)';
+      setTimeout(() => {
+        idx = (idx + 1) % countries.length;
+        el.textContent = countries[idx];
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+      }, 380);
+    }, 2800);
+  }
+</script>

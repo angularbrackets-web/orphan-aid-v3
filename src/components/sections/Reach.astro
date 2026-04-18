@@ -29,7 +29,7 @@ const flagMap: Record<string, string> = {
 
     <!-- Headline -->
     <div class="animate-in-element text-center max-w-3xl mx-auto mb-6">
-      <h2 class="font-[Montserrat] font-bold text-[#263238] leading-[1.05] tracking-[-0.02em]" style="font-size: clamp(2.8rem, 6vw, 4.5rem)">
+      <h2 class="font-[Montserrat] font-semibold text-[#263238] leading-[1.05] tracking-[-0.02em]" style="font-size: clamp(2.8rem, 6vw, 4.5rem)">
         Delivering Support<br />
         <span class="text-[#0d47a1]">Across Borders</span>
       </h2>
@@ -57,7 +57,7 @@ const flagMap: Record<string, string> = {
 
         <div class="space-y-4">
           {highCrisisCountries.map((country) => (
-            <div class="group relative flex items-center justify-between px-6 py-5 rounded-xl bg-gray-100 shadow-[0_2px_12px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.11)] hover:-translate-y-0.5 transition-all duration-300 border border-[#263238]/10 hover:border-red-200 overflow-hidden">
+            <div class="group relative flex items-center justify-start px-6 py-5 rounded-xl bg-gray-100 shadow-[0_2px_12px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.11)] hover:-translate-y-0.5 transition-all duration-300 border border-[#263238]/10 hover:border-red-200 overflow-hidden">
               <div class="card-shimmer"></div>
               <div class="absolute left-0 top-0 bottom-0 w-0.5 bg-red-500 scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-center rounded-full"></div>
               <div class="flex items-center gap-5">
@@ -66,10 +66,6 @@ const flagMap: Record<string, string> = {
                   <div class="font-[Montserrat] font-bold text-[#263238] leading-tight" style="font-size: clamp(1.4rem, 2.5vw, 1.75rem)">{country.label}</div>
                   <div class="text-[10px] tracking-widest uppercase text-[#263238]/40 font-[Inter] mt-1">Active Operations</div>
                 </div>
-              </div>
-              <div class="text-right">
-                <div class="font-[Montserrat] font-bold text-red-500 tabular-nums" style="font-size: clamp(1.5rem, 2.5vw, 2rem)">{country.orphans.toLocaleString()}</div>
-                <div class="text-[10px] text-[#263238]/35 font-[Inter] mt-1">children supported</div>
               </div>
             </div>
           ))}
@@ -89,7 +85,7 @@ const flagMap: Record<string, string> = {
 
         <div class="space-y-4">
           {vulnerableCountries.map((country) => (
-            <div class="group relative flex items-center justify-between px-6 py-5 rounded-xl bg-gray-100 shadow-[0_2px_12px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.11)] hover:-translate-y-0.5 transition-all duration-300 border border-[#263238]/10 hover:border-[#0d47a1]/25 overflow-hidden">
+            <div class="group relative flex items-center justify-start px-6 py-5 rounded-xl bg-gray-100 shadow-[0_2px_12px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.11)] hover:-translate-y-0.5 transition-all duration-300 border border-[#263238]/10 hover:border-[#0d47a1]/25 overflow-hidden">
               <div class="card-shimmer"></div>
               <div class="absolute left-0 top-0 bottom-0 w-0.5 bg-[#0d47a1] scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-center rounded-full"></div>
               <div class="flex items-center gap-5">
@@ -98,10 +94,6 @@ const flagMap: Record<string, string> = {
                   <div class="font-[Montserrat] font-bold text-[#263238] leading-tight" style="font-size: clamp(1.4rem, 2.5vw, 1.75rem)">{country.label}</div>
                   <div class="text-[10px] tracking-widest uppercase text-[#263238]/40 font-[Inter] mt-1">Established Partnership</div>
                 </div>
-              </div>
-              <div class="text-right">
-                <div class="font-[Montserrat] font-bold text-[#0d47a1] tabular-nums" style="font-size: clamp(1.5rem, 2.5vw, 2rem)">{country.orphans.toLocaleString()}</div>
-                <div class="text-[10px] text-[#263238]/35 font-[Inter] mt-1">children supported</div>
               </div>
             </div>
           ))}
