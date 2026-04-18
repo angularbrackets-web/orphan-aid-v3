@@ -1,39 +1,41 @@
 ---
 import { FallingPattern } from "@/components/react/FallingPattern";
+import { ImageRotationCarousel } from "@/components/react/ImageRotationCarousel";
 
 const differentiators = [
   {
     title: "Specialized Focus",
     body: "We dedicate 100% of our orphan initiative to orphan care and underserved regions — no dilution, no distraction.",
     accent: "#0d47a1",
-    accentLight: "#f0f4ff",
-    borderHover: "hover:border-[#0d47a1]/20",
     number: "01",
   },
   {
     title: "Scalable Systems",
     body: "We are building a structured, professional organization designed to grow sustainably with every new sponsor.",
     accent: "#FFB300",
-    accentLight: "#fffbf0",
-    borderHover: "hover:border-[#FFB300]/30",
     number: "02",
   },
   {
     title: "Accountability",
     body: "We deliver support with consistency, dignity, and rigorous financial management — every dollar tracked.",
     accent: "#0d47a1",
-    accentLight: "#f0f4ff",
-    borderHover: "hover:border-[#0d47a1]/20",
     number: "03",
   },
   {
     title: "Bold Vision",
     body: "A clear goal to support at least 10% of the world's orphaned children through sustainable, lasting care.",
     accent: "#FFB300",
-    accentLight: "#fffbf0",
-    borderHover: "hover:border-[#FFB300]/30",
     number: "04",
   },
+];
+
+const carouselImages = [
+  { id: "img1", src: "/pexels-2xman-yef-469319062-34053480.jpg", alt: "Child supported by Orphan Aid" },
+  { id: "img2", src: "/pexels-elvis-kambire-434351765-29396574.jpg", alt: "Child supported by Orphan Aid" },
+  { id: "img3", src: "/pexels-halaframe-35210451.jpg", alt: "Child supported by Orphan Aid" },
+  { id: "img4", src: "/pexels-nuray-yakin-644768945-17838366.jpg", alt: "Child supported by Orphan Aid" },
+  { id: "img5", src: "/pexels-rcp24-35617731.jpg", alt: "Child supported by Orphan Aid" },
+  { id: "img6", src: "/pexels-samimibirfotografci-319596948-15953951.jpg", alt: "Child supported by Orphan Aid" },
 ];
 ---
 
@@ -48,53 +50,67 @@ const differentiators = [
   />
 
   <div class="relative z-10 max-w-7xl mx-auto px-6">
-    <!-- Label -->
-    <div class="animate-in-element flex justify-center mb-8">
-      <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#263238]/8 border border-[#263238]/15 text-[#263238]/70 text-xs font-[Montserrat] font-semibold tracking-widest uppercase">
-        Why We're Different
-      </span>
-    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
-    <!-- Headline -->
-    <div class="animate-in-element text-center max-w-3xl mx-auto mb-20">
-      <h2 class="font-[Montserrat] font-bold text-[#263238] leading-[1.05] tracking-[-0.02em] mb-6" style="font-size: clamp(2.8rem, 6vw, 4.5rem)">
-        Why Our Approach<br />
-        <span class="text-[#0d47a1]">Is Different</span>
-      </h2>
-      <p class="text-lg font-[Inter] text-[#263238]/55 leading-[1.6]">
-        While many provide general relief, Orphan Aid is dedicated specifically
-        to the long-term success of orphans.
-      </p>
-    </div>
+      <!-- Left: Rotating image carousel -->
+      <div class="animate-in-element flex items-center justify-center order-2 lg:order-1">
+        <ImageRotationCarousel client:visible images={carouselImages} />
+      </div>
 
-    <!-- 2x2 Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-5xl mx-auto">
-      {differentiators.map((d, i) => (
-        <div
-          class={`animate-in-element group relative p-10 rounded-2xl bg-[#e8e8e8] overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.06)] hover:shadow-[0_12px_56px_rgba(0,0,0,0.13)] hover:-translate-y-2 transition-all duration-350 border border-transparent ${d.borderHover}`}
-          style={`transition-delay: ${i * 100}ms`}
-        >
-          <!-- Top accent stripe — thickens on hover -->
-          <div class="absolute top-0 left-0 right-0 h-[3px] group-hover:h-[5px] transition-all duration-300" style={`background-color: ${d.accent}`}></div>
+      <!-- Right: Content -->
+      <div class="order-1 lg:order-2">
 
-          <!-- Hover gradient tint -->
-          <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-350 pointer-events-none rounded-2xl" style={`background: linear-gradient(135deg, white 55%, ${d.accentLight} 100%)`}></div>
-
-          <div class="relative">
-            <!-- Title — large -->
-            <h3 class="font-[Montserrat] font-bold text-[#263238] mb-4 leading-[1.1]" style="font-size: clamp(1.6rem, 3vw, 2.2rem)">{d.title}</h3>
-            <p class="font-[Inter] text-[#263238]/60 leading-[1.65]">{d.body}</p>
-
-            <!-- Hover arrow -->
-            <div class="mt-6 flex items-center gap-1.5 opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-250" style={`color: ${d.accent}`}>
-              <span class="text-xs font-[Montserrat] font-bold tracking-widest uppercase">Learn more</span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" class="group-hover:translate-x-1 transition-transform duration-200">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-              </svg>
-            </div>
-          </div>
+        <!-- Label -->
+        <div class="animate-in-element mb-6">
+          <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#263238]/8 border border-[#263238]/15 text-[#263238]/70 text-xs font-[Montserrat] font-semibold tracking-widest uppercase">
+            Why We're Different
+          </span>
         </div>
-      ))}
+
+        <!-- Headline -->
+        <div class="animate-in-element mb-10">
+          <h2 class="font-[Montserrat] font-semibold text-[#263238] leading-[1.05] tracking-[-0.02em] mb-5" style="font-size: clamp(2.4rem, 4.5vw, 3.6rem)">
+            Why Our Approach<br />
+            <span class="text-[#0d47a1]">Is Different</span>
+          </h2>
+          <p class="text-base font-[Inter] text-[#263238]/55 leading-[1.65] max-w-md">
+            While many provide general relief, Orphan Aid is dedicated specifically
+            to the long-term success of orphans.
+          </p>
+        </div>
+
+        <!-- Numbered list -->
+        <div class="divide-y divide-[#263238]/10">
+          {differentiators.map((d, i) => (
+            <div
+              class="animate-in-element flex gap-5 py-6 group"
+              style={`transition-delay: ${i * 80}ms`}
+            >
+              <!-- Oversized faded number -->
+              <div class="flex-shrink-0 w-16">
+                <span
+                  class="font-[Satoshi] font-black leading-none select-none transition-opacity duration-300 group-hover:opacity-40"
+                  style={`font-size: 4rem; color: ${d.accent}; opacity: 0.18; line-height: 1`}
+                >
+                  {d.number}
+                </span>
+              </div>
+
+              <!-- Content -->
+              <div class="pt-1">
+                <h3
+                  class="font-[Montserrat] font-bold text-[#263238] mb-2 leading-[1.15] transition-colors duration-200"
+                  style="font-size: clamp(1.1rem, 2vw, 1.35rem)"
+                >
+                  {d.title}
+                </h3>
+                <p class="font-[Inter] text-[#263238]/58 leading-[1.65] text-sm">{d.body}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+      </div>
     </div>
   </div>
 </section>
