@@ -50,7 +50,7 @@
   <!-- Mobile menu -->
   <div
     id="mobile-menu"
-    class="hidden md:hidden absolute top-16 left-0 right-0 bg-[#0d47a1] shadow-xl px-6 py-6 flex flex-col gap-4"
+    class="hidden md:hidden absolute top-16 left-0 right-0 bg-[#56ACE0] shadow-xl px-6 py-6 flex flex-col gap-4"
   >
     <a href="#mission" class="text-white/90 text-base font-medium py-2 border-b border-white/10">Mission</a>
     <a href="#reach"   class="text-white/90 text-base font-medium py-2 border-b border-white/10">Our Reach</a>
@@ -71,23 +71,14 @@
   const iconClose = document.getElementById('icon-close');
   const navLinks = document.querySelectorAll('.nav-link');
 
-  // Scroll: transparent → solid, logo shrinks 2×
+  // Scroll: transparent at top, solid blue after 80px
   const handleScroll = () => {
     if (!nav) return;
     if (window.scrollY > 80) {
-      nav.classList.add('bg-white/95', 'backdrop-blur-md', 'shadow-sm');
-      nav.classList.remove('bg-transparent');
-      navLinks.forEach(l => {
-        l.classList.remove('text-white/80', 'hover:text-white');
-        l.classList.add('text-[#263238]/80', 'hover:text-[#263238]');
-      });
+      nav.classList.add('bg-[#56ace0]', 'shadow-md');
       if (logo) { logo.style.width = '36px'; logo.style.height = '36px'; }
     } else {
-      nav.classList.remove('bg-white/95', 'backdrop-blur-md', 'shadow-sm');
-      navLinks.forEach(l => {
-        l.classList.add('text-white/80', 'hover:text-white');
-        l.classList.remove('text-[#263238]/80', 'hover:text-[#263238]');
-      });
+      nav.classList.remove('bg-[#56ace0]', 'shadow-md');
       if (logo) { logo.style.width = '52px'; logo.style.height = '52px'; }
     }
   };
