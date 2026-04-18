@@ -1,0 +1,176 @@
+---
+import { SparklesCore } from "@/components/react/SparklesCore";
+import { GlobeOrphanAid } from "@/components/react/GlobeOrphanAid";
+import { TypewriterText } from "@/components/react/TypewriterText";
+import { orphanAidMarkers } from "@/data/countries";
+---
+
+<section
+  id="hero"
+  class="relative min-h-screen flex items-center overflow-hidden bg-[#56ACE0]"
+>
+  <!-- Sparkle particle background -->
+  <SparklesCore
+    client:only="react"
+    background="#56ACE0"
+    particleColor="#ffffff"
+    particleDensity={60}
+    minSize={0.6}
+    maxSize={2}
+    speed={1.5}
+    className="absolute inset-0 w-full h-full z-0"
+  />
+
+  <!-- Radial gradient overlay for depth -->
+  <div class="absolute inset-0 z-[1] pointer-events-none"
+    style="background: radial-gradient(ellipse 80% 80% at center, rgba(255,255,255,0.06) 0%, transparent 60%), radial-gradient(ellipse 100% 100% at center, rgba(10,50,100,0.28) 60%, transparent 100%)"
+  ></div>
+
+  <!-- Globe: truly centered -->
+  <div class="absolute inset-0 flex items-center justify-center z-[2] pointer-events-auto">
+    <GlobeOrphanAid
+      client:only="react"
+      markers={orphanAidMarkers}
+      speed={0.004}
+      className="w-[420px] h-[420px] sm:w-[600px] sm:h-[600px] lg:w-[820px] lg:h-[820px] xl:w-[920px] xl:h-[920px]"
+    />
+  </div>
+
+  <!-- Content: left text + right card -->
+  <div class="relative z-10 w-full max-w-7xl mx-auto px-6 pt-24 pb-16 min-h-screen flex items-center">
+    <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between w-full gap-10">
+
+      <!-- Left: hero text (no card backdrop) -->
+      <div class="pointer-events-auto max-w-xl xl:max-w-2xl">
+
+        <!-- Eyebrow badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/25 text-white/85 text-xs font-semibold tracking-widest uppercase mb-7 animate-fade-up" style="animation-delay:0ms">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#FFB300] inline-block"></span>
+          Canadian Registered Charity
+        </div>
+
+        <!-- Headline — Montserrat 700, oversized -->
+        <h1 class="font-[Montserrat] font-bold text-white leading-[1.0] tracking-[-0.02em] mb-6 animate-fade-up" style="font-size: clamp(3.5rem, 8vw, 6.5rem); animation-delay: 80ms">
+          Every Child<br />
+          <span class="text-[#e0cf56]">Is Our Child</span>
+        </h1>
+
+        <!-- Tagline — Montserrat 500 Italic -->
+        <p class="font-[Montserrat] font-medium italic text-white/80 mb-3 leading-[1.6] animate-fade-up" style="font-size: clamp(1rem, 1.5vw, 1.2rem); animation-delay: 160ms">
+          Your support provides orphaned children
+        </p>
+
+        <!-- Typewriter -->
+        <div class="font-[Montserrat] font-bold mb-10 min-h-[2.5rem] animate-fade-up" style="font-size: clamp(1.5rem, 3vw, 2.2rem); animation-delay: 220ms">
+          <TypewriterText client:only="react" />
+        </div>
+
+        <!-- Progress stat -->
+        <div class="flex items-center gap-3 mb-8 animate-fade-up" style="animation-delay: 280ms">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-[#FFB300] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+            <polyline points="17 6 23 6 23 12"/>
+          </svg>
+          <span class="text-white/70 text-sm font-[Inter] uppercase tracking-widest">Global Goal Progress</span>
+          <span class="text-[#FFB300] font-[Montserrat] font-bold text-sm">2.4M / 15.3M Reached</span>
+        </div>
+
+        <!-- CTAs -->
+        <div class="flex flex-col sm:flex-row gap-4 animate-fade-up" style="animation-delay: 340ms">
+          <a
+            href="#sponsor"
+            class="inline-flex items-center justify-center px-8 py-4 rounded-full font-[Montserrat] font-bold text-sm bg-[#FFB300] text-[#263238] hover:bg-[#e6a100] transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-0.5 uppercase tracking-wider"
+          >
+            Sponsor an Orphan
+            <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </a>
+          <a
+            href="#mission"
+            class="inline-flex items-center justify-center px-8 py-4 rounded-full font-[Montserrat] font-semibold text-sm text-white border border-white/40 hover:bg-white/15 transition-all duration-200"
+          >
+            Learn More
+          </a>
+        </div>
+
+        <!-- Sub-note -->
+        <p class="mt-4 text-white/45 text-[11px] font-[Inter] tracking-widest uppercase animate-fade-up" style="animation-delay: 400ms">
+          Join the daily mercy movement for just $1 a day
+        </p>
+      </div>
+
+      <!-- Right: Countries supported card -->
+      <div class="pointer-events-auto w-full lg:w-72 xl:w-80 shrink-0 animate-fade-up" style="animation-delay: 500ms">
+        <div class="rounded-2xl bg-white/12 backdrop-blur-lg border border-white/20 shadow-2xl overflow-hidden">
+          <!-- Card header -->
+          <div class="px-6 pt-6 pb-4 border-b border-white/12">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="w-2 h-2 rounded-full bg-[#e0cf56] inline-block animate-pulse"></span>
+              <span class="text-[10px] font-[Montserrat] font-bold tracking-widest uppercase text-[#e0cf56]">Countries Supported</span>
+            </div>
+            <p class="text-white/60 text-xs font-[Inter] leading-relaxed">Active operations across high-crisis &amp; vulnerable regions</p>
+          </div>
+
+          <!-- Countries list -->
+          <div class="px-6 py-4 space-y-3">
+            {orphanAidMarkers.slice(0, 5).map((country) => (
+              <div class="flex items-center justify-between group">
+                <span class="text-white/85 text-sm font-[Montserrat] font-medium group-hover:text-white transition-colors">{country.label}</span>
+                <span class="text-[#e0cf56] font-[Montserrat] font-bold text-sm tabular-nums">{country.orphans.toLocaleString()}</span>
+              </div>
+            ))}
+            <div class="flex items-center justify-between pt-1 border-t border-white/10">
+              <span class="text-white/45 text-xs font-[Inter]">+ 4 more regions</span>
+              <span class="text-white/45 text-xs font-[Inter]">see below</span>
+            </div>
+          </div>
+
+          <!-- Card footer summary -->
+          <div class="px-6 py-4 bg-white/5 border-t border-white/10">
+            <div class="flex items-center justify-between mb-3">
+              <div class="text-center">
+                <div class="text-2xl font-[Montserrat] font-bold text-[#e0cf56]">9</div>
+                <div class="text-[9px] text-white/50 font-[Inter] tracking-widest uppercase mt-0.5">Countries</div>
+              </div>
+              <div class="w-px h-8 bg-white/15"></div>
+              <div class="text-center">
+                <div class="text-2xl font-[Montserrat] font-bold text-[#e0cf56]">51,800+</div>
+                <div class="text-[9px] text-white/50 font-[Inter] tracking-widest uppercase mt-0.5">Orphans</div>
+              </div>
+              <div class="w-px h-8 bg-white/15"></div>
+              <div class="text-center">
+                <div class="text-2xl font-[Montserrat] font-bold text-[#e0cf56]">$33</div>
+                <div class="text-[9px] text-white/50 font-[Inter] tracking-widest uppercase mt-0.5">/ Month</div>
+              </div>
+            </div>
+            <a href="#reach" class="flex items-center justify-between text-xs font-[Montserrat] font-semibold text-white/70 hover:text-white transition-colors group">
+              <span class="uppercase tracking-widest">View All Operations</span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-white/50 pointer-events-none">
+    <span class="text-[10px] font-[Inter] font-semibold tracking-widest uppercase">Scroll</span>
+    <div class="w-px h-8 bg-gradient-to-b from-white/50 to-transparent"></div>
+  </div>
+</section>
+
+<style>
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-up {
+    opacity: 0;
+    animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+</style>

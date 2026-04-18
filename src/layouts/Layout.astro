@@ -1,0 +1,55 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Orphan Aid — Sponsor an Orphan Today | Canadian Charity",
+  description = "Orphan Aid is a registered Canadian charity supporting orphaned children across 9 countries. Sponsor a child from $33/month and provide food, education, and healthcare.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/jpeg" href="/logo.jpeg" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://api.fontshare.com" />
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,800,900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Manrope:wght@300..800&family=Montserrat:ital,wght@0,400;0,500;0,700;0,800;1,500&display=swap" rel="stylesheet" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <!-- Skip to content for accessibility -->
+    <style>
+      .skip-link {
+        position: absolute;
+        top: -100%;
+        left: 0;
+        background: #FFB300;
+        color: #263238;
+        padding: 0.5rem 1rem;
+        font-weight: 700;
+        z-index: 9999;
+        transition: top 0.1s;
+      }
+      .skip-link:focus {
+        top: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="#hero" class="skip-link">Skip to content</a>
+    <slot />
+  </body>
+</html>

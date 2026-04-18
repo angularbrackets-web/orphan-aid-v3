@@ -1,0 +1,95 @@
+---
+import { ShapesBackground } from "@/components/react/ShapesBackground";
+
+const steps = [
+  {
+    number: "01",
+    title: "You Sponsor",
+    body: "Choose a monthly tier that fits your commitment. Every amount makes a direct, traceable difference to a real child.",
+  },
+  {
+    number: "02",
+    title: "We Deliver",
+    body: "Your funds are allocated through trusted local partners to provide food, education, healthcare, and safe housing.",
+  },
+  {
+    number: "03",
+    title: "You See the Impact",
+    body: "Follow our journey through regular updates and see the tangible difference your support makes in children's lives.",
+  },
+];
+---
+
+<section id="how" class="relative py-28 md:py-36 bg-white overflow-hidden">
+  <ShapesBackground client:visible />
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6">
+    <!-- Label -->
+    <div class="animate-in-element flex justify-center mb-8">
+      <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FFB300]/10 border border-[#FFB300]/20 text-[#e6a100] text-xs font-[Montserrat] font-semibold tracking-widest uppercase">
+        How It Works
+      </span>
+    </div>
+
+    <!-- Headline -->
+    <div class="animate-in-element text-center max-w-2xl mx-auto mb-20">
+      <h2 class="font-[Montserrat] font-bold text-[#263238] leading-[1.05] tracking-[-0.02em] mb-6" style="font-size: clamp(2.8rem, 6vw, 4.5rem)">
+        Your Journey of Impact<br />
+        <span class="text-[#FFB300]">in 3 Steps</span>
+      </h2>
+      <p class="text-lg font-[Inter] text-[#263238]/55 leading-[1.6]">
+        Simple, direct, and impactful — from your decision to a child's smile.
+      </p>
+    </div>
+
+    <!-- Steps -->
+    <div class="relative">
+      <!-- Desktop connector line -->
+      <div class="hidden lg:block absolute top-[44px] left-[calc(16.66%+40px)] right-[calc(16.66%+40px)] h-px border-t-2 border-dashed border-[#FFB300]/30 z-0"></div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-8">
+        {steps.map((step, i) => (
+          <div
+            class={`animate-in-element group flex flex-col items-center text-center relative ${
+              i === 0 ? 'animate-in-left' : i === 2 ? 'animate-in-right' : 'animate-in-element'
+            }`}
+            style={`transition-delay: ${i * 150}ms`}
+          >
+            <!-- Number circle -->
+            <div class="relative z-10 w-20 h-20 rounded-full bg-[#FFB300] flex items-center justify-center mb-10 shadow-lg shadow-[#FFB300]/25 group-hover:scale-110 group-hover:shadow-[#FFB300]/40 group-hover:shadow-xl transition-all duration-300">
+              <span class="text-[#263238] text-xl font-[Montserrat] font-black">{step.number}</span>
+            </div>
+
+            <!-- Title — large, no icon -->
+            <h3 class="font-[Montserrat] font-bold text-[#263238] mb-4 leading-[1.1]" style="font-size: clamp(1.8rem, 3vw, 2.4rem)">{step.title}</h3>
+            <p class="font-[Inter] text-[#263238]/60 leading-[1.6] max-w-xs">{step.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- CTA nudge -->
+    <div class="animate-in-element text-center mt-20">
+      <a
+        href="#sponsor"
+        class="inline-flex items-center gap-2 px-8 py-4 rounded-full font-[Montserrat] font-bold text-base bg-[#263238] text-white hover:bg-[#37474f] transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+      >
+        Start Your Impact
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('is-visible');
+    }),
+    { threshold: 0.1, rootMargin: '-40px' }
+  );
+  document.querySelectorAll('#how .animate-in-element, #how .animate-in-left, #how .animate-in-right')
+    .forEach(el => observer.observe(el));
+</script>

@@ -1,0 +1,140 @@
+---
+import { FallingPattern } from "@/components/react/FallingPattern";
+import { highCrisisCountries, vulnerableCountries } from "@/data/countries";
+
+const flagMap: Record<string, string> = {
+  palestine: "🇵🇸", syria: "🇸🇾", yemen: "🇾🇪",
+  pakistan: "🇵🇰", india: "🇮🇳", indonesia: "🇮🇩",
+  nigeria: "🇳🇬", thailand: "🇹🇭", mauritania: "🇲🇷",
+};
+---
+
+<section id="reach" class="relative py-28 md:py-36 bg-white overflow-hidden">
+  <FallingPattern
+    client:visible
+    color="rgba(13,71,161,0.055)"
+    backgroundColor="white"
+    duration={160}
+    blurIntensity="0.8em"
+    density={1}
+  />
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6">
+    <!-- Label -->
+    <div class="animate-in-element flex justify-center mb-8">
+      <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#0d47a1]/8 border border-[#0d47a1]/15 text-[#0d47a1] text-xs font-[Montserrat] font-semibold tracking-widest uppercase">
+        Global Reach
+      </span>
+    </div>
+
+    <!-- Headline -->
+    <div class="animate-in-element text-center max-w-3xl mx-auto mb-6">
+      <h2 class="font-[Montserrat] font-bold text-[#263238] leading-[1.05] tracking-[-0.02em]" style="font-size: clamp(2.8rem, 6vw, 4.5rem)">
+        Delivering Support<br />
+        <span class="text-[#0d47a1]">Across Borders</span>
+      </h2>
+    </div>
+    <div class="animate-in-element text-center max-w-2xl mx-auto mb-20">
+      <p class="text-lg font-[Inter] text-[#263238]/60 leading-[1.6]">
+        Orphan Aid is focused on regions facing the most critical humanitarian needs,
+        establishing partnerships and infrastructure where they matter most.
+      </p>
+    </div>
+
+    <!-- Two-column country groups -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+
+      <!-- High-Crisis Zones -->
+      <div class="animate-in-element" style="transition-delay: 100ms">
+        <div class="mb-8">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="w-3 h-3 rounded-full bg-red-500 shrink-0 animate-pulse"></span>
+            <h3 class="font-[Montserrat] font-bold text-[#263238] tracking-tight" style="font-size: clamp(1.5rem, 3vw, 2rem)">High-Crisis Zones</h3>
+          </div>
+          <div class="ml-6 h-0.5 w-24 bg-gradient-to-r from-red-500 to-transparent rounded-full"></div>
+          <p class="ml-6 mt-2 text-xs font-[Inter] text-[#263238]/45 tracking-wide">Priority funding allocated to these regions</p>
+        </div>
+
+        <div class="space-y-4">
+          {highCrisisCountries.map((country) => (
+            <div class="group relative flex items-center justify-between px-6 py-5 rounded-xl bg-gray-100 shadow-[0_2px_12px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.11)] hover:-translate-y-0.5 transition-all duration-300 border border-[#263238]/10 hover:border-red-200 overflow-hidden">
+              <div class="card-shimmer"></div>
+              <div class="absolute left-0 top-0 bottom-0 w-0.5 bg-red-500 scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-center rounded-full"></div>
+              <div class="flex items-center gap-5">
+                <span class="text-5xl leading-none" aria-hidden="true">{flagMap[country.id]}</span>
+                <div>
+                  <div class="font-[Montserrat] font-bold text-[#263238] leading-tight" style="font-size: clamp(1.4rem, 2.5vw, 1.75rem)">{country.label}</div>
+                  <div class="text-[10px] tracking-widest uppercase text-[#263238]/40 font-[Inter] mt-1">Active Operations</div>
+                </div>
+              </div>
+              <div class="text-right">
+                <div class="font-[Montserrat] font-bold text-red-500 tabular-nums" style="font-size: clamp(1.5rem, 2.5vw, 2rem)">{country.orphans.toLocaleString()}</div>
+                <div class="text-[10px] text-[#263238]/35 font-[Inter] mt-1">children supported</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Vulnerable Communities -->
+      <div class="animate-in-element" style="transition-delay: 200ms">
+        <div class="mb-8">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="w-3 h-3 rounded-full bg-[#0d47a1] shrink-0"></span>
+            <h3 class="font-[Montserrat] font-bold text-[#263238] tracking-tight" style="font-size: clamp(1.5rem, 3vw, 2rem)">Vulnerable Communities</h3>
+          </div>
+          <div class="ml-6 h-0.5 w-24 bg-gradient-to-r from-[#0d47a1] to-transparent rounded-full"></div>
+          <p class="ml-6 mt-2 text-xs font-[Inter] text-[#263238]/45 tracking-wide">Long-term care infrastructure in development</p>
+        </div>
+
+        <div class="space-y-4">
+          {vulnerableCountries.map((country) => (
+            <div class="group relative flex items-center justify-between px-6 py-5 rounded-xl bg-gray-100 shadow-[0_2px_12px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.11)] hover:-translate-y-0.5 transition-all duration-300 border border-[#263238]/10 hover:border-[#0d47a1]/25 overflow-hidden">
+              <div class="card-shimmer"></div>
+              <div class="absolute left-0 top-0 bottom-0 w-0.5 bg-[#0d47a1] scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-center rounded-full"></div>
+              <div class="flex items-center gap-5">
+                <span class="text-5xl leading-none" aria-hidden="true">{flagMap[country.id]}</span>
+                <div>
+                  <div class="font-[Montserrat] font-bold text-[#263238] leading-tight" style="font-size: clamp(1.4rem, 2.5vw, 1.75rem)">{country.label}</div>
+                  <div class="text-[10px] tracking-widest uppercase text-[#263238]/40 font-[Inter] mt-1">Established Partnership</div>
+                </div>
+              </div>
+              <div class="text-right">
+                <div class="font-[Montserrat] font-bold text-[#0d47a1] tabular-nums" style="font-size: clamp(1.5rem, 2.5vw, 2rem)">{country.orphans.toLocaleString()}</div>
+                <div class="text-[10px] text-[#263238]/35 font-[Inter] mt-1">children supported</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes shimmer-sweep {
+    0%   { transform: translateX(-100%); opacity: 0; }
+    5%   { opacity: 1; }
+    45%  { opacity: 1; }
+    50%  { transform: translateX(300%); opacity: 0; }
+    100% { transform: translateX(300%); opacity: 0; }
+  }
+  .card-shimmer {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, transparent 20%, rgba(255,255,255,0.65) 50%, transparent 80%);
+    animation: shimmer-sweep 5s ease-in-out infinite;
+    pointer-events: none;
+    border-radius: inherit;
+  }
+</style>
+
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('is-visible');
+    }),
+    { threshold: 0.1, rootMargin: '-60px' }
+  );
+  document.querySelectorAll('#reach .animate-in-element').forEach(el => observer.observe(el));
+</script>

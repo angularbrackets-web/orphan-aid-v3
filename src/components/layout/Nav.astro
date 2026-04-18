@@ -1,0 +1,113 @@
+---
+---
+<header id="site-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-2 shrink-0" aria-label="Orphan Aid Home">
+      <img
+        id="nav-logo"
+        src="/logo.jpeg"
+        alt="Orphan Aid"
+        width="52"
+        height="52"
+        class="rounded-md object-contain"
+        style="width:52px;height:52px;transition:width 0.3s ease,height 0.3s ease;"
+      />
+    </a>
+
+    <!-- Desktop nav links -->
+    <nav class="hidden md:flex items-center gap-8" aria-label="Main navigation">
+      <a href="#mission"  class="nav-link text-sm font-medium text-white/80 hover:text-white transition-colors">Mission</a>
+      <a href="#reach"    class="nav-link text-sm font-medium text-white/80 hover:text-white transition-colors">Our Reach</a>
+      <a href="#sponsor"  class="nav-link text-sm font-medium text-white/80 hover:text-white transition-colors">Sponsor</a>
+      <a href="#faq"      class="nav-link text-sm font-medium text-white/80 hover:text-white transition-colors">FAQ</a>
+    </nav>
+
+    <!-- CTA -->
+    <a
+      href="#sponsor"
+      class="hidden md:inline-flex items-center px-5 py-2.5 rounded-full text-sm font-semibold bg-[#FFB300] text-[#263238] hover:bg-[#e6a100] transition-colors duration-200 shadow-md"
+    >
+      Sponsor an Orphan
+    </a>
+
+    <!-- Mobile hamburger -->
+    <button
+      id="nav-toggle"
+      class="md:hidden text-white p-2 rounded-md hover:bg-white/10 transition-colors"
+      aria-label="Open menu"
+      aria-expanded="false"
+    >
+      <svg id="icon-menu" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+        <line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/>
+      </svg>
+      <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" class="hidden">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div
+    id="mobile-menu"
+    class="hidden md:hidden absolute top-16 left-0 right-0 bg-[#0d47a1] shadow-xl px-6 py-6 flex flex-col gap-4"
+  >
+    <a href="#mission" class="text-white/90 text-base font-medium py-2 border-b border-white/10">Mission</a>
+    <a href="#reach"   class="text-white/90 text-base font-medium py-2 border-b border-white/10">Our Reach</a>
+    <a href="#sponsor" class="text-white/90 text-base font-medium py-2 border-b border-white/10">Sponsor</a>
+    <a href="#faq"     class="text-white/90 text-base font-medium py-2 border-b border-white/10">FAQ</a>
+    <a href="#sponsor" class="mt-2 text-center px-5 py-3 rounded-full text-sm font-semibold bg-[#FFB300] text-[#263238]">
+      Sponsor an Orphan
+    </a>
+  </div>
+</header>
+
+<script>
+  const nav = document.getElementById('site-nav');
+  const logo = document.getElementById('nav-logo') as HTMLImageElement | null;
+  const toggle = document.getElementById('nav-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const iconMenu = document.getElementById('icon-menu');
+  const iconClose = document.getElementById('icon-close');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  // Scroll: transparent → solid, logo shrinks 2×
+  const handleScroll = () => {
+    if (!nav) return;
+    if (window.scrollY > 80) {
+      nav.classList.add('bg-white/95', 'backdrop-blur-md', 'shadow-sm');
+      nav.classList.remove('bg-transparent');
+      navLinks.forEach(l => {
+        l.classList.remove('text-white/80', 'hover:text-white');
+        l.classList.add('text-[#263238]/80', 'hover:text-[#263238]');
+      });
+      if (logo) { logo.style.width = '36px'; logo.style.height = '36px'; }
+    } else {
+      nav.classList.remove('bg-white/95', 'backdrop-blur-md', 'shadow-sm');
+      navLinks.forEach(l => {
+        l.classList.add('text-white/80', 'hover:text-white');
+        l.classList.remove('text-[#263238]/80', 'hover:text-[#263238]');
+      });
+      if (logo) { logo.style.width = '52px'; logo.style.height = '52px'; }
+    }
+  };
+
+  window.addEventListener('scroll', handleScroll, { passive: true });
+
+  // Mobile toggle
+  toggle?.addEventListener('click', () => {
+    const isOpen = mobileMenu?.classList.toggle('hidden') === false;
+    iconMenu?.classList.toggle('hidden', isOpen);
+    iconClose?.classList.toggle('hidden', !isOpen);
+    toggle.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  // Close mobile menu on link click
+  mobileMenu?.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+      iconMenu?.classList.remove('hidden');
+      iconClose?.classList.add('hidden');
+    });
+  });
+</script>
