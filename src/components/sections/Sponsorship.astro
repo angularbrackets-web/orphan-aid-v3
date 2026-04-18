@@ -1,17 +1,17 @@
 ---
-import { FallingPattern } from "@/components/react/FallingPattern";
+import { SparklesCore } from "@/components/react/SparklesCore";
 
 const tiers = [
   {
     id: "daily",
     name: "Daily Mercy",
     price: 33,
-    tagline: "Daily food, basic clothing, and access to community care.",
+    tagline: "Just $1 a day — your support joins others to cover an orphan's basic daily needs.",
     features: [
-      "Daily nutritious meals",
-      "Basic clothing & essentials",
-      "Community care access",
-      "Monthly impact report",
+      "Daily food and nutrition",
+      "Basic clothing and essentials",
+      "Access to community care programs",
+      "Shared education support",
     ],
     featured: false,
   },
@@ -19,13 +19,12 @@ const tiers = [
     id: "full",
     name: "Full Sponsorship",
     price: 89,
-    tagline: "Complete support including school fees, supplies, and direct guardian assistance.",
+    tagline: "Completely sponsor an orphan — become a consistent source of care and stability in their life.",
     features: [
-      "Everything in Daily Mercy",
-      "School fees & supplies",
-      "Direct guardian assistance",
-      "Quarterly personal updates",
-      "Tax receipt issued",
+      "Monthly financial support to child's guardian",
+      "Education (school fees, supplies, learning)",
+      "Food, clothing, and daily living needs",
+      "Basic healthcare and wellbeing support",
     ],
     featured: true,
   },
@@ -33,46 +32,37 @@ const tiers = [
     id: "priority",
     name: "Priority Sponsorship",
     price: 120,
-    tagline: "Emergency medical, trauma care, and food in high-cost crisis zones like Palestine.",
+    tagline: "Support an orphan where the need is greatest — Palestine and other crisis zones.",
     features: [
-      "Everything in Full Sponsorship",
-      "Emergency medical care",
-      "Trauma support services",
-      "Crisis zone priority access",
-      "Direct impact verification",
+      "Emergency food and essential aid",
+      "Support in crisis-affected regions (incl. Palestine)",
+      "Medical and trauma-related care",
+      "Direct assistance to families in urgent situations",
     ],
     featured: false,
   },
 ];
 ---
 
-<section id="sponsor" class="relative py-28 md:py-36 bg-white overflow-hidden">
-  <FallingPattern
-    client:visible
-    color="rgba(255,179,0,0.06)"
-    backgroundColor="white"
-    duration={140}
-    blurIntensity="0.8em"
-    density={1}
-  />
-
+<section id="sponsor" class="relative py-28 md:py-36 bg-[#56ACE0] overflow-hidden">
   <div class="relative z-10 max-w-7xl mx-auto px-6">
     <!-- Label -->
     <div class="animate-in-element flex justify-center mb-8">
-      <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FFB300]/15 border border-[#FFB300]/30 text-[#e6a100] text-xs font-[Montserrat] font-semibold tracking-widest uppercase">
+      <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/25 text-white/85 text-xs font-[Montserrat] font-semibold tracking-widest uppercase">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#FFB300] inline-block"></span>
         Choose Your Impact
       </span>
     </div>
 
     <!-- Headline -->
     <div class="animate-in-element text-center max-w-3xl mx-auto mb-6">
-      <h2 class="font-[Montserrat] font-bold text-[#263238] leading-[1.05] tracking-[-0.02em]" style="font-size: clamp(2.8rem, 6vw, 4.5rem)">
+      <h2 class="font-[Montserrat] font-semibold text-white leading-[1.05] tracking-[-0.02em]" style="font-size: clamp(2.8rem, 6vw, 4.5rem)">
         You Can Be<br />
-        <span class="text-[#FFB300]">the Change</span>
+        <span class="text-[#e0cf56]">the Change</span>
       </h2>
     </div>
     <div class="animate-in-element text-center max-w-2xl mx-auto mb-20">
-      <p class="text-lg font-[Inter] text-[#263238]/55 leading-[1.6]">
+      <p class="text-lg font-[Inter] text-white/80 leading-[1.6]">
         Choose a monthly commitment that provides consistent stability in an orphan's life.
         Every tier makes a real, traceable difference.
       </p>
@@ -89,18 +79,33 @@ const tiers = [
           }`}
           style={`transition-delay: ${i * 120}ms`}
         >
+          <!-- Particle Background -->
+          <div class="absolute inset-0 z-0 pointer-events-none opacity-80 group-hover:opacity-100 transition-opacity duration-500">
+            <SparklesCore
+              id={`sparkles-${tier.id}`}
+              client:visible
+              background="transparent"
+              particleColor={tier.featured ? "#ffffff" : "#56ACE0"}
+              particleDensity={180}
+              minSize={1.2}
+              maxSize={2.8}
+              speed={1.5}
+              className="w-full h-full"
+            />
+          </div>
+
           <!-- Top accent bar -->
-          <div class={`h-1 group-hover:h-[5px] w-full transition-all duration-300 ${tier.featured ? 'bg-[#FFB300]' : 'bg-[#0d47a1]/20 group-hover:bg-[#0d47a1]/40'}`}></div>
+          <div class={`relative z-10 h-1 group-hover:h-[5px] w-full transition-all duration-300 ${tier.featured ? 'bg-[#FFB300]' : 'bg-[#0d47a1]/20 group-hover:bg-[#0d47a1]/40'}`}></div>
 
           {tier.featured && (
             <div class="absolute top-5 right-5 z-10">
-              <span class="px-3 py-1 rounded-full bg-[#FFB300] text-[#263238] text-[10px] font-[Montserrat] font-black tracking-widest uppercase shadow-md">
+              <span class="px-3 py-1 rounded-full bg-[#FFB300] text-[#263238] text-[10px] font-[Montserrat] font-semibold tracking-widest uppercase shadow-md">
                 Most Popular
               </span>
             </div>
           )}
 
-          <div class="p-8">
+          <div class="relative z-10 p-8">
             <!-- Tier name -->
             <div class={`text-[10px] font-[Montserrat] font-bold tracking-widest uppercase mb-4 ${tier.featured ? 'text-white/50' : 'text-[#263238]/40'}`}>
               {tier.name}
@@ -109,7 +114,7 @@ const tiers = [
             <!-- Price -->
             <div class="flex items-end gap-0.5 mb-2">
               <span class={`text-2xl font-[Montserrat] font-medium leading-none mb-1 ${tier.featured ? 'text-[#FFB300]/70' : 'text-[#263238]/50'}`}>$</span>
-              <span class={`font-[Montserrat] font-bold leading-none ${tier.featured ? 'text-[#FFB300]' : 'text-[#263238]'}`} style="font-size: clamp(3rem, 5vw, 3.75rem)">{tier.price}</span>
+              <span class={`font-[Montserrat] font-semibold leading-none ${tier.featured ? 'text-[#FFB300]' : 'text-[#263238]'}`} style="font-size: clamp(3rem, 5vw, 3.75rem)">{tier.price}</span>
               <span class={`text-sm font-[Inter] font-medium mb-1.5 ml-0.5 ${tier.featured ? 'text-white/40' : 'text-[#263238]/40'}`}>/mo</span>
             </div>
             <p class={`text-sm font-[Inter] leading-[1.6] mb-8 ${tier.featured ? 'text-white/60' : 'text-[#263238]/55'}`}>{tier.tagline}</p>
@@ -146,7 +151,7 @@ const tiers = [
 
     <!-- Trust note -->
     <div class="animate-in-element mt-12 text-center">
-      <p class="text-sm font-[Inter] text-[#263238]/40 font-medium">
+      <p class="text-sm font-[Inter] text-white/60 font-medium">
         🔒 Cancel anytime &nbsp;·&nbsp; Official tax receipts issued &nbsp;·&nbsp; 100% goes to orphan care
       </p>
     </div>
