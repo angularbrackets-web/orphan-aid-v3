@@ -1,8 +1,9 @@
-import React, { useId, useMemo } from "react";
+import React, { useId } from "react";
 import { useEffect, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import type { Container, SingleOrMultiple } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim";
+import { loadHeartShape } from "@tsparticles/shape-heart";
 import { cn } from "@/lib/utils";
 import { motion, useAnimation } from "framer-motion";
 
@@ -14,8 +15,9 @@ type SparklesCoreProps = {
   minSize?: number;
   maxSize?: number;
   speed?: number;
-  particleColor?: string;
+  particleColor?: string | string[];
   particleDensity?: number;
+  particleShape?: string;
 };
 
 export const SparklesCore = ({
@@ -27,6 +29,7 @@ export const SparklesCore = ({
   speed = 3,
   particleColor = "#ffffff",
   particleDensity = 80,
+  particleShape = "circle",
 }: SparklesCoreProps) => {
   const [init, setInit] = useState(false);
   const controls = useAnimation();
@@ -35,6 +38,7 @@ export const SparklesCore = ({
   useEffect(() => {
     initParticlesEngine(async (engine) => {
       await loadSlim(engine);
+      await loadHeartShape(engine);
     }).then(() => setInit(true));
   }, []);
 
@@ -93,7 +97,7 @@ export const SparklesCore = ({
                   destroy: "none",
                 },
               },
-              shape: { type: "circle" },
+              shape: { type: particleShape },
               size: {
                 value: { min: minSize, max: maxSize },
               },

@@ -33,11 +33,13 @@ import { FAQAccordion } from "@/components/react/FAQAccordion";
         { label: "Flexibility", value: "Cancel", sub: "Anytime" },
         { label: "Inclusive", value: "All Faiths", sub: "Welcome" },
       ].map((badge, i) => (
-        <div class="group relative flex flex-col p-5 rounded-2xl bg-[#f7f8fa] border border-[#e8ecf0] hover:border-[#0d47a1]/25 hover:bg-[#f0f4ff] hover:-translate-y-0.5 hover:shadow-[0_6px_24px_rgba(13,71,161,0.08)] transition-all duration-250 overflow-hidden">
-          <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-[#0d47a1] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full"></div>
-          <span class="text-[9px] font-[Montserrat] font-bold tracking-widest uppercase text-[#263238]/35 mb-1">{badge.label}</span>
-          <span class="text-base font-[Montserrat] font-bold text-[#263238] leading-tight">{badge.value}</span>
-          <span class="text-[11px] font-[Inter] text-[#263238]/45 mt-0.5">{badge.sub}</span>
+        <div class="group h-full">
+          <div class="relative h-full flex flex-col p-5 rounded-2xl bg-[#f7f8fa] border border-[#e8ecf0] group-hover:border-[#0d47a1]/25 group-hover:bg-[#f0f4ff] group-hover:-translate-y-0.5 group-hover:shadow-[0_6px_24px_rgba(13,71,161,0.08)] transition-all duration-250 overflow-hidden">
+            <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-[#0d47a1] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full"></div>
+            <span class="text-[9px] font-[Montserrat] font-bold tracking-widest uppercase text-[#263238]/35 mb-1">{badge.label}</span>
+            <span class="text-base font-[Montserrat] font-bold text-[#263238] leading-tight">{badge.value}</span>
+            <span class="text-[11px] font-[Inter] text-[#263238]/45 mt-0.5">{badge.sub}</span>
+          </div>
         </div>
       ))}
     </div>

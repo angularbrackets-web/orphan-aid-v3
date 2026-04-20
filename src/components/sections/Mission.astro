@@ -53,46 +53,52 @@ import orphan3 from '@/assets/images/orphan-3.jpg';
     <!-- Photo bento grid -->
     <div class="mb-16 grid gap-4" style="grid-template-columns: 1fr 1.3fr; height: 580px">
       <!-- Left: portrait — object-position focuses on the children's faces -->
-      <div class="animate-in-element relative rounded-2xl overflow-hidden border border-[#263238]/8 shadow-[0_4px_24px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_40px_rgba(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300" style="transition-delay: 100ms">
-        <Image
-          src={orphan2}
-          alt="Children at an orphanage"
-          width={640}
-          height={1209}
-          class="absolute inset-0 w-full h-full object-cover"
-          style="object-position: center 18%"
-          loading="lazy"
-          decoding="async"
-          format="webp"
-        />
-      </div>
-      <!-- Right: landscape top (bigger), portrait bottom (more height for the child) -->
-      <div class="grid gap-4" style="grid-template-rows: 1.6fr 2.4fr">
-        <div class="animate-in-element relative rounded-2xl overflow-hidden border border-[#263238]/8 shadow-[0_4px_24px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_40px_rgba(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300" style="transition-delay: 200ms">
+      <div class="animate-in-element group h-full" style="transition-delay: 100ms">
+        <div class="relative h-full rounded-2xl overflow-hidden border border-[#263238]/8 shadow-[0_4px_24px_rgba(0,0,0,0.06)] group-hover:shadow-[0_8px_40px_rgba(0,0,0,0.12)] group-hover:-translate-y-1 transition-all duration-300">
           <Image
-            src={orphan1}
-            alt="A young orphan child"
+            src={orphan2}
+            alt="Children at an orphanage"
             width={640}
-            height={427}
+            height={1209}
             class="absolute inset-0 w-full h-full object-cover"
-            style="object-position: center 40%"
+            style="object-position: center 18%"
             loading="lazy"
             decoding="async"
             format="webp"
           />
         </div>
-        <div class="animate-in-element relative rounded-2xl overflow-hidden border border-[#263238]/8 shadow-[0_4px_24px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_40px_rgba(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300" style="transition-delay: 300ms">
-          <Image
-            src={orphan3}
-            alt="An orphan child smiling"
-            width={640}
-            height={960}
-            class="absolute inset-0 w-full h-full object-cover"
-            style="object-position: center 58%"
-            loading="lazy"
-            decoding="async"
-            format="webp"
-          />
+      </div>
+      <!-- Right: landscape top (bigger), portrait bottom (more height for the child) -->
+      <div class="grid gap-4" style="grid-template-rows: 1.6fr 2.4fr">
+        <div class="animate-in-element group h-full" style="transition-delay: 200ms">
+          <div class="relative h-full rounded-2xl overflow-hidden border border-[#263238]/8 shadow-[0_4px_24px_rgba(0,0,0,0.06)] group-hover:shadow-[0_8px_40px_rgba(0,0,0,0.12)] group-hover:-translate-y-1 transition-all duration-300">
+            <Image
+              src={orphan1}
+              alt="A young orphan child"
+              width={640}
+              height={427}
+              class="absolute inset-0 w-full h-full object-cover"
+              style="object-position: center 40%"
+              loading="lazy"
+              decoding="async"
+              format="webp"
+            />
+          </div>
+        </div>
+        <div class="animate-in-element group h-full" style="transition-delay: 300ms">
+          <div class="relative h-full rounded-2xl overflow-hidden border border-[#263238]/8 shadow-[0_4px_24px_rgba(0,0,0,0.06)] group-hover:shadow-[0_8px_40px_rgba(0,0,0,0.12)] group-hover:-translate-y-1 transition-all duration-300">
+            <Image
+              src={orphan3}
+              alt="An orphan child smiling"
+              width={640}
+              height={960}
+              class="absolute inset-0 w-full h-full object-cover"
+              style="object-position: center 58%"
+              loading="lazy"
+              decoding="async"
+              format="webp"
+            />
+          </div>
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+
 import {
   Accordion,
   AccordionContent,
@@ -35,21 +35,16 @@ const faqs = [
 ];
 
 export function FAQAccordion() {
-  const [openItem, setOpenItem] = useState<string | undefined>(undefined);
-
   return (
     <Accordion
       type="single"
-      value={openItem}
-      onValueChange={setOpenItem}
+      collapsible
       className="w-full space-y-3"
     >
       {faqs.map((faq, i) => (
         <AccordionItem
           key={i}
           value={`item-${i}`}
-          onMouseEnter={() => setOpenItem(`item-${i}`)}
-          onMouseLeave={() => setOpenItem(undefined)}
           className="border border-[#263238]/10 rounded-2xl px-6 bg-white shadow-sm overflow-hidden hover:border-[#0d47a1]/20 hover:bg-[#f8faff] hover:shadow-[0_4px_20px_rgba(13,71,161,0.07)] transition-all duration-200"
         >
           <AccordionTrigger className="text-left text-base font-[Montserrat] font-semibold text-[#263238] hover:no-underline hover:text-[#0d47a1] py-5 transition-colors duration-200 [&>svg]:text-[#0d47a1]/50">
